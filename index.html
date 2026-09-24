@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirundu United F.C. — The Border Boys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #0F3D2E;
+    --forest-dark: #0A2A1F;
+    --gold: #D4A24C;
+    --gold-light: #E8C27A;
+    --ivory: #F6F2E8;
+    --ink: #16231A;
+    --muted: #5A6259;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Public Sans', system-ui, sans-serif; background: var(--ivory); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  .disp { font-family: 'Bebas Neue', 'Public Sans', sans-serif; letter-spacing: 0.01em; }
+  img.placeholder { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  nav { position: sticky; top: 0; z-index: 20; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 18px 64px; background: var(--forest); border-bottom: 1px solid rgba(212,162,76,0.25); }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .badge { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .badge span { font-size: 20px; color: var(--forest); }
+  .navlinks { display: flex; align-items: center; gap: 40px; }
+  .navlinks a.link { font-size: 15px; font-weight: 600; color: var(--ivory); }
+  .navlinks a.link:hover { color: var(--gold); }
+  .btn-outline { padding: 11px 22px; border-radius: 999px; border: 1.5px solid var(--gold); font-size: 14px; font-weight: 700; color: var(--gold); }
+  .btn-outline:hover { background: rgba(247,243,234,0.12); }
+
+  header.hero { width: 100%; padding: 120px 64px 100px; background: linear-gradient(160deg, var(--forest) 0%, var(--forest-dark) 100%); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; position: relative; overflow: hidden; }
+  header.hero::before { content: ""; position: absolute; inset: 0; opacity: 0.08; background-image: radial-gradient(circle at 20% 20%, var(--gold) 0, transparent 45%), radial-gradient(circle at 80% 70%, var(--gold) 0, transparent 40%); }
+  .eyebrow { position: relative; padding: 8px 20px; border-radius: 999px; background: rgba(212,162,76,0.14); border: 1px solid rgba(212,162,76,0.4); color: var(--gold-light); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; }
+  h1.title { position: relative; margin: 0; font-size: 108px; line-height: 0.95; color: var(--ivory); }
+  .subtitle { position: relative; margin: 0; max-width: 620px; font-size: 19px; line-height: 1.6; color: rgba(247,243,234,0.78); }
+  .cta-row { position: relative; display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; justify-content: center; }
+  .btn-gold { padding: 16px 32px; border-radius: 999px; background: var(--gold); color: var(--forest); font-size: 15px; font-weight: 800; }
+  .btn-gold:hover { background: #C08F3C; }
+  .btn-line { padding: 16px 32px; border-radius: 999px; border: 1.5px solid rgba(247,243,234,0.4); color: var(--ivory); font-size: 15px; font-weight: 700; }
+  .btn-line:hover { background: rgba(247,243,234,0.12); }
+  .stats-row { position: relative; display: flex; gap: 56px; margin-top: 48px; flex-wrap: wrap; justify-content: center; }
+  .stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .stat .num { font-size: 40px; color: var(--gold); }
+  .stat .label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgba(247,243,234,0.6); }
+  .divider-v { width: 1px; background: rgba(247,243,234,0.18); }
+
+  .strip { width: 100%; padding: 28px 64px; background: var(--gold); display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; text-align: center; }
+  .strip span { font-size: 22px; color: var(--forest); letter-spacing: 0.02em; }
+
+  section.about { width: 100%; padding: 100px 64px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; align-items: start; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: var(--gold); }
+  h2.section-title { margin: 0; font-size: 44px; color: var(--forest); line-height: 1.05; }
+  .about-copy { display: flex; flex-direction: column; gap: 22px; }
+  .about-copy p { margin: 0; font-size: 17px; line-height: 1.75; color: var(--muted); }
+  .info-card { background: var(--forest); border-radius: 20px; padding: 40px; display: flex; flex-direction: column; gap: 24px; }
+  .info-list { display: flex; flex-direction: column; gap: 18px; }
+  .info-row { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(247,243,234,0.14); }
+  .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .info-row .k { font-size: 14px; color: rgba(247,243,234,0.6); }
+  .info-row .v { font-size: 14px; font-weight: 600; color: var(--ivory); text-align: right; }
+
+  section.news { width: 100%; padding: 40px 64px 110px; display: flex; flex-direction: column; gap: 44px; background: #FFFFFF; }
+  .news-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .news-link { font-size: 14px; font-weight: 700; color: var(--forest); border-bottom: 2px solid var(--gold); padding-bottom: 2px; }
+  .news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .card { display: flex; flex-direction: column; gap: 16px; padding: 28px; border-radius: 16px; background: var(--ivory); border: 1px solid rgba(15,61,46,0.08); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(15,61,46,0.14); }
+  .card-thumb { width: 100%; height: 150px; border-radius: 12px; background: linear-gradient(140deg, var(--forest), #1C5A41); display: flex; align-items: center; justify-content: center; }
+  .card-thumb span { font-size: 15px; color: var(--gold); letter-spacing: 0.06em; }
+  .card-date { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #9A8A5C; }
+  .card h3 { margin: 0; font-size: 19px; color: var(--ink); line-height: 1.35; }
+  .card p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
+
+  section.contact { width: 100%; padding: 90px 64px; background: var(--forest); display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 64px; }
+  .contact-copy { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+  .contact-copy h2 { margin: 0; font-size: 46px; color: var(--ivory); line-height: 1.08; }
+  .contact-copy p { margin: 0; font-size: 16px; line-height: 1.7; color: rgba(247,243,234,0.7); max-width: 480px; }
+  .contact-card { background: rgba(247,243,234,0.05); border: 1px solid rgba(247,243,234,0.14); border-radius: 20px; padding: 36px; display: flex; flex-direction: column; gap: 22px; }
+  .contact-item { display: flex; gap: 16px; align-items: center; }
+  .icon-box { width: 42px; height: 42px; border-radius: 10px; background: rgba(212,162,76,0.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-item .label { font-size: 12px; color: rgba(247,243,234,0.55); }
+  .contact-item .value { font-size: 15px; font-weight: 600; color: var(--ivory); }
+
+  footer { width: 100%; padding: 32px 64px; background: var(--forest-dark); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer .copyright { font-size: 13px; color: rgba(247,243,234,0.5); }
+  footer .note { font-size: 12px; color: rgba(247,243,234,0.35); }
+
+  @media (max-width: 900px) {
+    nav, header.hero, .strip, section.about, section.news, section.contact, footer { padding-left: 24px; padding-right: 24px; }
+    .navlinks { gap: 18px; }
+    .navlinks a.link { display: none; }
+    h1.title { font-size: 56px; }
+    section.about, section.contact { grid-template-columns: 1fr; gap: 40px; }
+    .news-grid { grid-template-columns: 1fr; }
+    .stats-row { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="brand">
+    <div class="badge"><span class="disp">CU</span></div>
+    <div style="display:flex;flex-direction:column;line-height:1.05;">
+      <span class="disp" style="font-size:20px;color:#F7F3EA;letter-spacing:0.04em;">CHIRUNDU UNITED</span>
+      <span style="font-size:11px;font-weight:600;color:#D4A24C;letter-spacing:0.14em;">FOOTBALL CLUB</span>
+    </div>
+  </a>
+  <div class="navlinks">
+    <a class="link" href="#about">About</a>
+    <a class="link" href="#news">News</a>
+    <a class="link" href="#contact">Contact</a>
+    <a class="btn-outline" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">Follow the Club</a>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <span class="eyebrow">CHIRUNDU DISTRICT · LUSAKA PROVINCE</span>
+  <h1 class="title disp">THE BORDER BOYS</h1>
+  <p class="subtitle">Chirundu United Football Club — proudly representing Chirundu District, Lusaka Province, on and off the pitch.</p>
+  <div class="cta-row">
+    <a class="btn-gold" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">Follow on Facebook</a>
+    <a class="btn-line" href="#news">Latest News</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><span class="num disp">43K</span><span class="label">FACEBOOK FOLLOWERS</span></div>
+    <div class="divider-v"></div>
+    <div class="stat"><span class="num disp">2026</span><span class="label">CHARITY SHIELD CHAMPIONS</span></div>
+    <div class="divider-v"></div>
+    <div class="stat"><span class="num disp">PRO</span><span class="label">SPORTS TEAM</span></div>
+  </div>
+</header>
+
+<section class="strip">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10v3a5 5 0 0 1-5 5 5 5 0 0 1-5-5V4Z" stroke="#0F3D2E" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4" stroke="#0F3D2E" stroke-width="1.6" stroke-linecap="round"/><path d="M12 12v4M9 20h6M10 20v-2.5a2 2 0 0 1 4 0V20" stroke="#0F3D2E" stroke-width="1.6" stroke-linecap="round"/></svg>
+  <span class="disp">2026 SAMUEL "ZOOM" NDHLOVU CHARITY SHIELD CHAMPIONS</span>
+</section>
+
+<section id="about" class="about">
+  <div class="about-copy">
+    <span class="kicker">ABOUT THE CLUB</span>
+    <h2 class="section-title disp" style="font-size:48px;">A CLUB BUILT ON COMMUNITY</h2>
+    <p>Chirundu United F.C. is a professional football club representing Chirundu District in Lusaka Province. Known to supporters as the Border Boys, the club has built a passionate following of over 40,000 fans, backed by strong support from local leadership and the community.</p>
+    <p>On the pitch, the Border Boys compete for silverware; off it, the club stays close to the district it represents — sharing match reports, celebrations and community messages with supporters every week.</p>
+  </div>
+  <div class="info-card">
+    <span class="kicker">CLUB INFO</span>
+    <div class="info-list">
+      <div class="info-row"><span class="k">Location</span><span class="v">Chirundu District, Lusaka</span></div>
+      <div class="info-row"><span class="k">Category</span><span class="v">Professional Sports Team</span></div>
+      <div class="info-row"><span class="k">Nickname</span><span class="v">The Border Boys</span></div>
+      <div class="info-row"><span class="k">Followers</span><span class="v">43K on Facebook</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="news" class="news">
+  <div class="news-head">
+    <div>
+      <span class="kicker">FROM THE CLUB</span>
+      <h2 class="section-title disp" style="margin-top:10px;">LATEST NEWS</h2>
+    </div>
+    <a class="news-link" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">View all updates on Facebook →</a>
+  </div>
+  <div class="news-grid">
+    <article class="card">
+      <div class="card-thumb"><span class="disp">MATCH REPORT</span></div>
+      <span class="card-date">4 DAYS AGO</span>
+      <h3>Official Match Report: Charity Shield Champions</h3>
+      <p>The Border Boys are crowned 2026 Samuel "Zoom" Ndhlovu Charity Shield champions after a hard-fought campaign.</p>
+    </article>
+    <article class="card">
+      <div class="card-thumb"><span class="disp">COMMUNITY</span></div>
+      <span class="card-date">2 DAYS AGO</span>
+      <h3>A Message of Gratitude to Our MP</h3>
+      <p>The club thanks Hon. James Mwanja, Chirundu's Member of Parliament, for his continued support of the Border Boys.</p>
+    </article>
+    <article class="card">
+      <div class="card-thumb"><span class="disp">CLUB UPDATE</span></div>
+      <span class="card-date">4 DAYS AGO</span>
+      <h3>Happy Sunday From the Border Boys</h3>
+      <p>A weekend greeting to every supporter cheering the club on, near and far from Chirundu District.</p>
+    </article>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-copy">
+    <span class="kicker">GET IN TOUCH</span>
+    <h2 class="disp">JOIN THE BORDER BOYS FAMILY</h2>
+    <p>Follow along for match reports, fixtures and everything happening around Chirundu United F.C.</p>
+  </div>
+  <div class="contact-card">
+    <div class="contact-item">
+      <div class="icon-box"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" stroke="#D4A24C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="label">Phone</div><div class="value">+260 763 300 400</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="icon-box"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5h18v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Z" stroke="#D4A24C" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 6.9 12 13l8.5-6.1" stroke="#D4A24C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="label">Email</div><div class="value">chirunduunitedfootballclub@gmail.com</div></div>
+    </div>
+    <a class="btn-gold" style="margin-top:6px;text-align:center;padding:15px;border-radius:12px;" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">Visit Our Facebook Page</a>
+  </div>
+</section>
+
+<footer>
+  <span class="copyright">© 2026 Chirundu United F.C. — The Border Boys</span>
+  <span class="note">Concept design — independent fan/portfolio project, not an official club site</span>
+</footer>
+
+</body>
+</html>

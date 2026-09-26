@@ -119,12 +119,13 @@
     font-weight: 800; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase;
   }
 
-  /* Bento Section */
+  /* Sections */
   section { padding: 120px 48px; max-width: 1300px; margin: 0 auto; }
   .section-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
   .section-kicker { font-size: 12px; font-weight: 700; color: #60A5FA; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px; }
   .section-title { font-size: clamp(36px, 4vw, 48px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
 
+  /* Bento Section */
   .bento-grid {
     display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 24px;
@@ -138,8 +139,6 @@
   .bento-card:hover { border-color: rgba(37, 99, 235, 0.4); transform: translateY(-4px); }
   .bento-card.span-7 { grid-column: span 7; }
   .bento-card.span-5 { grid-column: span 5; }
-  .bento-card.span-4 { grid-column: span 4; }
-  .bento-card.span-8 { grid-column: span 8; }
 
   .card-icon {
     width: 48px; height: 48px; border-radius: 14px;
@@ -149,6 +148,50 @@
   }
   .bento-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
   .bento-card p { font-size: 15px; line-height: 1.7; color: var(--muted); }
+
+  /* Gallery & Media Hub */
+  .gallery-filters {
+    display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 10px 22px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--primary); color: #FFFFFF; border-color: var(--primary);
+  }
+
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px;
+  }
+  .gallery-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+  .gallery-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .gallery-img-wrap {
+    position: relative; width: 100%; height: 260px; overflow: hidden; background: #0b132b;
+  }
+  .gallery-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+  }
+  .gallery-card:hover .gallery-img-wrap img { transform: scale(1.05); }
+  .gallery-badge {
+    position: absolute; top: 16px; left: 16px; padding: 6px 14px; border-radius: 999px;
+    background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15); font-size: 11px; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .gallery-info { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .gallery-info h3 { font-size: 18px; font-weight: 700; color: var(--text); }
+  .gallery-info p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
   /* News Grid */
   .news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
@@ -197,9 +240,21 @@
     font-size: 13px; color: var(--muted); max-width: 1300px; margin: 0 auto;
   }
 
+  /* Lightbox Modal */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px);
+    display: none; align-items: center; justify-content: center; padding: 40px;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 16px; object-fit: contain; border: 1px solid var(--border); }
+  #lightbox-caption { position: absolute; bottom: 40px; text-align: center; color: var(--text); font-size: 16px; font-weight: 600; }
+  #lightbox-close { position: absolute; top: 32px; right: 40px; font-size: 32px; color: var(--muted); cursor: pointer; background: none; border: none; }
+  #lightbox-close:hover { color: var(--accent); }
+
   @media (max-width: 1024px) {
-    .bento-card.span-7, .bento-card.span-5, .bento-card.span-4, .bento-card.span-8 { grid-column: span 12; }
-    .news-grid { grid-template-columns: 1fr; }
+    .bento-card.span-7, .bento-card.span-5 { grid-column: span 12; }
+    .gallery-grid, .news-grid { grid-template-columns: 1fr; }
     .contact-wrapper { grid-template-columns: 1fr; padding: 36px; gap: 36px; }
     nav { padding: 18px 24px; }
     section { padding: 80px 24px; }
@@ -219,6 +274,7 @@
   </a>
   <div class="navlinks">
     <a class="link" href="#about">About</a>
+    <a class="link" href="#gallery">Gallery</a>
     <a class="link" href="#news">News</a>
     <a class="link" href="#contact">Contact</a>
     <a class="btn-primary" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">Follow the Club</a>
@@ -232,7 +288,7 @@
   <p class="subtitle">Chiundu United Football Club represents the heart and spirit of Chiundu District, uniting fans across Lusaka Province with relentless passion and elite competitive drive.</p>
   <div class="hero-ctas">
     <a class="btn-primary" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">Official Facebook Page</a>
-    <a class="btn-outline" href="#news">Explore Latest Updates</a>
+    <a class="btn-outline" href="#gallery">Explore Photo Gallery</a>
   </div>
   <div class="stats-grid">
     <div class="stat-item">
@@ -293,7 +349,109 @@
   </div>
 </section>
 
-<section id="news" style="background: rgba(15, 23, 42, 0.3);">
+<!-- IMMERSIVE PHOTO GALLERY & MEDIA HUB -->
+<section id="gallery" style="background: rgba(15, 23, 42, 0.4);">
+  <div class="section-header">
+    <div class="section-kicker font-outfit">VISUAL ARCHIVE</div>
+    <h2 class="section-title font-outfit">CLUB MOMENTS & MEDIA</h2>
+  </div>
+
+  <div class="gallery-filters">
+    <button class="filter-btn active" data-filter="all">All Photos</button>
+    <button class="filter-btn" data-filter="squad">Squad & Kit</button>
+    <button class="filter-btn" data-filter="matchday">Matchday</button>
+    <button class="filter-btn" data-filter="community">Community</button>
+    <button class="filter-btn" data-filter="fans">Supporters & Media</button>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- 1. Official Squad Lineup -->
+    <div class="gallery-card" data-category="squad" onclick="openLightbox('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop', 'Official Starting XI & Squad Lineup on the pitch in home colors')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Squad & Kit</span>
+        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop" alt="Official Squad Lineup" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">Official Starting XI & Squad Lineup</h3>
+        <p>The Border Boys ready for battle on the pitch in their official blue and white home kit.</p>
+      </div>
+    </div>
+
+    <!-- 2. Community Outreach -->
+    <div class="gallery-card" data-category="community" onclick="openLightbox('https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop', 'Community Outreach & Relief Initiative in Chiundu District')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Community</span>
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop" alt="Community Outreach" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">Community Outreach & Relief</h3>
+        <p>Players and club leadership distributing food packs and supplies to the local community in Chiundu.</p>
+      </div>
+    </div>
+
+    <!-- 3. Charity Shield Celebration -->
+    <div class="gallery-card" data-category="matchday" onclick="openLightbox('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200&auto=format&fit=crop', '2026 Samuel Zoom Ndhlovu Charity Shield Squad & Technical Team Celebration')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Matchday</span>
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200&auto=format&fit=crop" alt="Charity Shield Celebration" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">Charity Shield Champions</h3>
+        <p>Squad and technical team celebrating the 2026 Samuel "Zoom" Ndhlovu Charity Shield victory.</p>
+      </div>
+    </div>
+
+    <!-- 4. Absa Cup Media Interview -->
+    <div class="gallery-card" data-category="fans" onclick="openLightbox('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop', 'Official Absa Cup Tournament Press & Media Interview')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Press & Media</span>
+        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop" alt="Absa Cup Media Interview" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">Absa Cup Media Briefing</h3>
+        <p>Club leadership live on air during official tournament press interviews and broadcaster coverages.</p>
+      </div>
+    </div>
+
+    <!-- 5. Fans in Full Voice -->
+    <div class="gallery-card" data-category="fans" onclick="openLightbox('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=1200&auto=format&fit=crop', 'The Border Boys Fan Base in Full Voice at the Stadium')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Supporters</span>
+        <img src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=1200&auto=format&fit=crop" alt="Fans in Full Voice" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">The Border Boys in Full Voice</h3>
+        <p>Electric atmosphere in the stands driven by our passionate 43K+ fan base across the district.</p>
+      </div>
+    </div>
+
+    <!-- 6. Matchday Defensive Wall -->
+    <div class="gallery-card" data-category="matchday" onclick="openLightbox('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=1200&auto=format&fit=crop', 'Matchday Defensive Wall & Tactical Discipline during Cup Fixtures')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Matchday</span>
+        <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=1200&auto=format&fit=crop" alt="Matchday Defensive Wall" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">Matchday Defensive Wall</h3>
+        <p>Tactical discipline and unbreakable focus during a crucial competitive tournament fixture.</p>
+      </div>
+    </div>
+
+    <!-- 7. Studio Kit Reveal -->
+    <div class="gallery-card" data-category="squad" onclick="openLightbox('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200&auto=format&fit=crop', 'Official Studio Kit & Brand Reveal Featuring Key Players')">
+      <div class="gallery-img-wrap">
+        <span class="gallery-badge">Squad & Kit</span>
+        <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200&auto=format&fit=crop" alt="Studio Kit Reveal" loading="lazy">
+      </div>
+      <div class="gallery-info">
+        <h3 class="font-outfit">New Season Kit & Brand Reveal</h3>
+        <p>Studio portrait of key players modeling the official home strip with pristine sponsor placement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="news">
   <div class="section-header">
     <div class="section-kicker font-outfit">LATEST DISPATCHES</div>
     <h2 class="section-title font-outfit">CLUB NEWS & UPDATES</h2>
@@ -364,6 +522,52 @@
   <span class="copyright">© 2026 Chiundu United F.C. — The Border Boys</span>
   <span class="note">Concept design — independent portfolio project</span>
 </footer>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:16px;" onclick="event.stopPropagation()">
+    <img id="lightbox-img" src="" alt="Enlarged view">
+    <div id="lightbox-caption"></div>
+  </div>
+</div>
+
+<script>
+  // Gallery Filtering
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryCards = document.querySelectorAll('.gallery-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+
+      galleryCards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Lightbox
+  function openLightbox(src, caption) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const cap = document.getElementById('lightbox-caption');
+    img.src = src;
+    cap.textContent = caption;
+    lightbox.classList.add('open');
+  }
+
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('open');
+  }
+</script>
 
 </body>
 </html>

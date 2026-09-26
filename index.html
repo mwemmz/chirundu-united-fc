@@ -2,7 +2,8 @@
 <html lang="en" class="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#030712">
 <title>Chiundu United F.C. — The Border Boys</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,6 +48,12 @@
   .navlinks { display: flex; align-items: center; gap: 36px; }
   .navlinks a.link { font-size: 14px; font-weight: 600; color: var(--muted); transition: color 0.2s ease; }
   .navlinks a.link:hover { color: var(--accent); }
+  .menu-toggle {
+    display: none; width: 44px; height: 44px; padding: 0;
+    background: none; border: 1px solid var(--border); border-radius: 12px;
+    color: var(--text); font-size: 22px; align-items: center; justify-content: center;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
   .btn-primary {
     padding: 12px 24px; border-radius: 999px;
     background: var(--accent); color: #030712;
@@ -244,13 +251,13 @@
   #lightbox {
     position: fixed; inset: 0; z-index: 1000;
     background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px);
-    display: none; align-items: center; justify-content: center; padding: 40px;
+    display: none; align-items: center; justify-content: center; padding: 20px;
   }
   #lightbox.open { display: flex; }
-  #lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 16px; object-fit: contain; border: 1px solid var(--border); }
-  #lightbox-caption { position: absolute; bottom: 40px; text-align: center; color: var(--text); font-size: 16px; font-weight: 600; }
-  #lightbox-close { position: absolute; top: 32px; right: 40px; font-size: 32px; color: var(--muted); cursor: pointer; background: none; border: none; }
+  #lightbox-close { position: absolute; top: 16px; right: 16px; z-index: 2; font-size: 30px; color: var(--muted); cursor: pointer; background: none; border: none; width: 44px; height: 44px; }
   #lightbox-close:hover { color: var(--accent); }
+  #lightbox img { max-width: 100%; max-height: 78dvh; border-radius: 16px; object-fit: contain; border: 1px solid var(--border); }
+  #lightbox-caption { margin-top: 14px; text-align: center; color: var(--text); font-size: 14px; font-weight: 600; max-width: 480px; }
 
   @media (max-width: 1024px) {
     .bento-card.span-7, .bento-card.span-5 { grid-column: span 12; }
@@ -259,6 +266,71 @@
     nav { padding: 18px 24px; }
     section { padding: 80px 24px; }
     .stats-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 12px 16px; padding-top: calc(12px + env(safe-area-inset-top)); }
+    .menu-toggle { display: flex; }
+    .navlinks {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 90;
+      flex-direction: column; align-items: flex-start; justify-content: flex-start;
+      gap: 8px; padding: calc(84px + env(safe-area-inset-top)) 28px 32px;
+      background: rgba(3, 7, 18, 0.98); border-left: 1px solid var(--border);
+      width: min(78vw, 320px); transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+      box-shadow: -24px 0 48px rgba(0,0,0,0.5);
+    }
+    .navlinks.open { transform: translateX(0); }
+    .navlinks a.link { font-size: 15px; padding: 10px 0; }
+    .navlinks .btn-primary { margin-top: 12px; }
+
+    header.hero {
+      min-height: 100dvh;
+      padding: calc(120px + env(safe-area-inset-top)) 20px 60px;
+    }
+    h1.title { font-size: clamp(44px, 13vw, 64px); margin-bottom: 18px; }
+    .subtitle { font-size: 16px; margin-bottom: 28px; }
+    .hero-ctas { flex-direction: column; width: 100%; max-width: 340px; margin-bottom: 48px; }
+    .hero-ctas .btn-primary, .hero-ctas .btn-outline { width: 100%; justify-content: center; }
+    .btn-primary, .btn-outline { min-height: 48px; display: inline-flex; align-items: center; }
+
+    .stats-grid { padding: 24px 16px; gap: 24px; }
+    .stat-num { font-size: 32px; }
+
+    .strip { padding: 18px 16px; font-size: 14px; text-align: center; }
+
+    section { padding: 64px 16px; padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    .section-header { margin-bottom: 40px; }
+    .section-title { font-size: 30px; }
+    .bento-card { padding: 28px 24px; }
+    .bento-card h3 { font-size: 21px; }
+
+    .gallery-filters {
+      justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap;
+      padding-bottom: 8px; margin: 0 -16px 32px; padding-left: 16px; padding-right: 16px;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .gallery-filters::-webkit-scrollbar { display: none; }
+    .filter-btn { flex-shrink: 0; padding: 12px 20px; min-height: 44px; }
+    .gallery-grid, .news-grid { gap: 20px; }
+    .gallery-img-wrap, .news-thumb { height: auto; aspect-ratio: 4 / 3; }
+    .gallery-info, .news-content { padding: 20px; }
+    .gallery-info h3, .news-card h3 { font-size: 17px; }
+
+    .contact-wrapper { padding: 28px 20px; border-radius: 24px; gap: 32px; }
+    .contact-info h2 { font-size: 30px; }
+    .contact-form-card { padding: 24px 20px; }
+    .contact-row .value { font-size: 14px; word-break: break-word; }
+
+    footer { flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 32px 16px 40px; }
+    #lightbox { padding: 16px; }
+    #lightbox-caption { font-size: 13px; }
+  }
+
+  @media (max-width: 400px) {
+    .badge { width: 40px; height: 40px; }
+    .brand span.font-outfit { font-size: 15px; }
+    h1.title { font-size: clamp(38px, 12vw, 52px); }
   }
 </style>
 </head>
@@ -272,13 +344,16 @@
       <span style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:0.16em;">FOOTBALL CLUB</span>
     </div>
   </a>
-  <div class="navlinks">
+  <div class="navlinks" id="navlinks">
     <a class="link" href="#about">About</a>
     <a class="link" href="#gallery">Gallery</a>
     <a class="link" href="#news">News</a>
     <a class="link" href="#contact">Contact</a>
     <a class="btn-primary" href="https://www.facebook.com/TheeBorderBoys" target="_blank" rel="noopener">Follow the Club</a>
   </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navlinks">
+    <span id="menuIcon">&#9776;</span>
+  </button>
 </nav>
 
 <header id="top" class="hero font-outfit">
@@ -369,7 +444,7 @@
     <div class="gallery-card" data-category="squad" onclick="openLightbox('team photo1.jpeg', 'Official Team Squad Photo 1 — The Border Boys')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Squad & Kit</span>
-        <img src="team photo1.jpeg" alt="Team Photo 1" loading="lazy">
+        <img src="team photo1.jpeg" alt="Team Photo 1" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Official Squad Portrait (1)</h3>
@@ -381,7 +456,7 @@
     <div class="gallery-card" data-category="squad" onclick="openLightbox('team photo2.jpeg', 'Official Team Squad Photo 2 — Matchday Squad & Technical Staff')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Squad & Kit</span>
-        <img src="team photo2.jpeg" alt="Team Photo 2" loading="lazy">
+        <img src="team photo2.jpeg" alt="Team Photo 2" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Official Squad Portrait (2)</h3>
@@ -393,7 +468,7 @@
     <div class="gallery-card" data-category="matchday" onclick="openLightbox('on the field.jpeg', 'Match Action On The Field — Unbreakable Defensive Wall & Focus')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Matchday</span>
-        <img src="on the field.jpeg" alt="On The Field" loading="lazy">
+        <img src="on the field.jpeg" alt="On The Field" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Match Action On The Field</h3>
@@ -405,7 +480,7 @@
     <div class="gallery-card" data-category="fans" onclick="openLightbox('match day vibes(photo of fans).jpeg', 'Match Day Vibes — The Border Boys Supporter Base in Full Voice')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Supporters</span>
-        <img src="match day vibes(photo of fans).jpeg" alt="Match Day Vibes" loading="lazy">
+        <img src="match day vibes(photo of fans).jpeg" alt="Match Day Vibes" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Match Day Vibes & Supporters</h3>
@@ -417,7 +492,7 @@
     <div class="gallery-card" data-category="community" onclick="openLightbox('corporate social responsibility giving back to the community.jpeg', 'Corporate Social Responsibility & Community Outreach in Chiundu')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Community</span>
-        <img src="corporate social responsibility giving back to the community.jpeg" alt="Corporate Social Responsibility" loading="lazy">
+        <img src="corporate social responsibility giving back to the community.jpeg" alt="Corporate Social Responsibility" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Community Outreach & Giving Back</h3>
@@ -429,7 +504,7 @@
     <div class="gallery-card" data-category="squad" onclick="openLightbox('absa football kit.jpeg', 'Official Absa Football Kit Showcase & Player Portraits')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Squad & Kit</span>
-        <img src="absa football kit.jpeg" alt="Absa Football Kit" loading="lazy">
+        <img src="absa football kit.jpeg" alt="Absa Football Kit" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Absa Football Kit Showcase</h3>
@@ -441,7 +516,7 @@
     <div class="gallery-card" data-category="fans" onclick="openLightbox('absa cup interview photo focus.jpeg', 'Absa Cup Tournament Press & Broadcaster Interview')">
       <div class="gallery-img-wrap">
         <span class="gallery-badge">Press & Media</span>
-        <img src="absa cup interview photo focus.jpeg" alt="Absa Cup Interview" loading="lazy">
+        <img src="absa cup interview photo focus.jpeg" alt="Absa Cup Interview" loading="lazy" decoding="async">
       </div>
       <div class="gallery-info">
         <h3 class="font-outfit">Absa Cup Media Interview</h3>
@@ -526,13 +601,36 @@
 <!-- LIGHTBOX MODAL -->
 <div id="lightbox" onclick="closeLightbox()">
   <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
-  <div style="display:flex; flex-direction:column; align-items:center; gap:16px;" onclick="event.stopPropagation()">
+  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;" onclick="event.stopPropagation()">
     <img id="lightbox-img" src="" alt="Enlarged view">
     <div id="lightbox-caption"></div>
   </div>
 </div>
 
 <script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  const menuIcon = document.getElementById('menuIcon');
+
+  function closeMenu() {
+    navlinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuIcon.textContent = '\u2630';
+  }
+
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navlinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    menuIcon.textContent = isOpen ? '\u2715' : '\u2630';
+  });
+
+  navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => {
+    if (navlinks.classList.contains('open') && !navlinks.contains(e.target)) closeMenu();
+  });
+
   // Gallery Filtering
   const filterBtns = document.querySelectorAll('.filter-btn');
   const galleryCards = document.querySelectorAll('.gallery-card');
@@ -561,12 +659,21 @@
     img.src = src;
     cap.textContent = caption;
     lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('open');
+    document.body.style.overflow = '';
   }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLightbox();
+      closeMenu();
+    }
+  });
 </script>
 
 </body>

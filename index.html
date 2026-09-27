@@ -158,6 +158,14 @@
   }
   .bento-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
   .bento-card p { font-size: 15px; line-height: 1.7; color: var(--muted); }
+  .director-wrap { position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 28px; }
+  .director-wrap img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+  .director-tag {
+    position: absolute; left: 12px; bottom: 12px; padding: 6px 14px; border-radius: 999px;
+    background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15); font-size: 12px; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+  }
 
   /* Gallery & Media Hub */
   .gallery-filters {
@@ -406,6 +414,10 @@
       </div>
     </div>
     <div class="bento-card span-5">
+      <div class="director-wrap">
+        <img src="director.jpeg" alt="Chiundu United Club Director" loading="lazy" decoding="async">
+        <span class="director-tag">Club Director</span>
+      </div>
       <div>
         <div class="card-icon">🏆</div>
         <h3>Club Profile</h3>

@@ -301,11 +301,17 @@
       position: fixed; top: 0; right: 0; bottom: 0; z-index: 90;
       flex-direction: column; align-items: flex-start; justify-content: flex-start;
       gap: 8px; padding: calc(84px + env(safe-area-inset-top)) 28px 32px;
-      background: rgba(3, 7, 18, 0.98); border-left: 1px solid var(--border);
+      background: var(--surface); border-left: 1px solid var(--border);
       width: min(78vw, 320px); transform: translateX(100%);
       transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
       box-shadow: -24px 0 48px rgba(0,0,0,0.5);
     }
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 85;
+      background: rgba(3, 7, 18, 0.68); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+      opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+    }
+    .nav-overlay.show { opacity: 1; pointer-events: auto; }
     .navlinks.open { transform: translateX(0); }
     .navlinks a.link { font-size: 15px; padding: 10px 0; }
     .navlinks .btn-primary { margin-top: 12px; }
@@ -385,6 +391,7 @@
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navlinks">
     <span id="menuIcon">&#9776;</span>
   </button>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 </nav>
 
 <header id="top" class="hero font-outfit" style="background-image: url('absa football kit.jpeg');">
@@ -661,10 +668,13 @@
   // Mobile menu toggle
   const menuToggle = document.getElementById('menuToggle');
   const navlinks = document.getElementById('navlinks');
+  const navOverlay = document.getElementById('navOverlay');
   const menuIcon = document.getElementById('menuIcon');
 
   function closeMenu() {
     navlinks.classList.remove('open');
+    navOverlay.classList.remove('show');
+    navOverlay.setAttribute('aria-hidden', 'true');
     menuToggle.setAttribute('aria-expanded', 'false');
     menuIcon.textContent = '\u2630';
   }
@@ -672,9 +682,13 @@
   menuToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     const isOpen = navlinks.classList.toggle('open');
+    navOverlay.classList.toggle('show', isOpen);
+    navOverlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     menuIcon.textContent = isOpen ? '\u2715' : '\u2630';
   });
+
+  navOverlay.addEventListener('click', closeMenu);
 
   navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('click', (e) => {
